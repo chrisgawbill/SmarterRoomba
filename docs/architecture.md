@@ -33,6 +33,27 @@ Roomba 694
 └── drive system
 ```
 
+## Current implementation (SR-001)
+
+SR-001 provides only the installable Python 3.11+ server skeleton. It uses the
+Python standard library to start an HTTP server and exposes `GET /health`, which
+returns `{"status":"ok"}`. The server listens on `127.0.0.1:8080` by default;
+`SMARTER_ROOMBA_HOST` and `SMARTER_ROOMBA_PORT` override those values.
+
+The current `src/smarter_roomba` layout maps to the planned server layers as
+follows:
+
+- `app.py`: HTTP startup and health endpoint.
+- `__main__.py`: `python -m smarter_roomba` entry point.
+- `config.py`: server host/port environment configuration and port validation.
+- `gateway`: defines the hardware-neutral `RobotTransport` protocol boundary
+  (`read` and `write` bytes); no concrete robot transport exists yet.
+- `telemetry`, `odometry`, `mapping`, and `storage`: package boundaries only;
+  their behavior is not implemented yet.
+
+There is no Roomba or bridge connection, telemetry processing, pose estimation,
+map generation, persistence, movement control, or navigation in SR-001.
+
 ## Layers
 
 ### 1. Roomba
@@ -63,7 +84,9 @@ The bridge should not contain mapping or AI logic.
 
 The home server owns high-level intelligence.
 
-Initial modules:
+Planned initial modules (their package boundaries exist, but behavior remains to
+be implemented):
+
 - `gateway`: communication with bridge
 - `telemetry`: normalized robot events
 - `odometry`: estimate x/y/heading from wheel movement

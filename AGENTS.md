@@ -16,6 +16,7 @@ The PM agent is the brain. Coding subagents execute narrowly scoped work; they d
 8. Preserve Roomba low-level safety behavior wherever possible. Server failure must not intentionally defeat cliff, bump, charging, or other built-in safeguards.
 9. New dependencies, hardware purchases, architecture changes, or significant scope expansion require user approval.
 10. After a feature is complete, remove temporary handoff/context files created solely for that feature.
+11. Related to #2, tell agents the context so they do not re-read files unnecessarily. You are the brain they are the worker ants.
 
 ## Ticket format
 
@@ -30,7 +31,7 @@ Each ticket communicates only:
 
 ## PM workflow
 
-1. Read the active ticket and only relevant architecture/code.
+1. Read the active ticket and only relevant architecture/code. Create a new branch for the ticket. 
 2. Resolve dependencies and unknowns before dispatching implementation.
 3. Send the coding agent a compact execution contract. Do not ask it to independently redesign the feature.
 4. Coding agent implements the minimum change and returns changed files plus a maximum 3-bullet summary.
@@ -46,7 +47,7 @@ Coding subagents:
 - execute rather than deliberate broadly;
 - inspect only necessary files;
 - do not repeat the ticket back to the PM;
-- do not add unrelated cleanup, dependencies, tests, docs, or abstractions;
+- do not add unrelated cleanup, depe*nd*encies, tests, docs, or abstractions;
 - report blockers/assumptions only when they affect execution.
 
 QA subagents do not modify application code. Default output:

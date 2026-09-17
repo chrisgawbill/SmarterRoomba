@@ -21,3 +21,34 @@ The project starts small: communicate with the Roomba, collect telemetry, estima
 - Build and verify one small capability at a time.
 
 See `docs/architecture.md` and `docs/backlog.md`.
+
+## Server setup
+
+Requires Python 3.11 or newer. The server has no runtime dependencies outside
+the Python standard library.
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e .
+python -m unittest discover -s tests
+```
+
+Start the server:
+
+```sh
+python -m smarter_roomba
+```
+
+In another terminal, check its health:
+
+```sh
+curl http://127.0.0.1:8080/health
+```
+
+The listen address can be changed with `SMARTER_ROOMBA_HOST` and
+`SMARTER_ROOMBA_PORT`:
+
+```sh
+SMARTER_ROOMBA_HOST=0.0.0.0 SMARTER_ROOMBA_PORT=9000 python -m smarter_roomba
+```
