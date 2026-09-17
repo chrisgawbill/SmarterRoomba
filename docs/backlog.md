@@ -4,6 +4,8 @@ Work one ticket at a time. PM owns reasoning and dispatch; coding agents execute
 
 ## SR-001 — Repository + server skeleton
 
+**Status:** Complete
+
 **Goal**  
 Create the minimum project structure needed for the server-side brain without implementing robot behavior.
 
@@ -35,6 +37,7 @@ Serial communication, movement, mapping implementation, web dashboard.
 
 **Goal**  
 Document the exact safe interface between the Roomba 694 and the user's Arduino before any wiring or hardware-control code is written.
+See if we can wirelessly connect to Roomba
 
 **Scope**
 - Confirm exact Arduino model with the user.
